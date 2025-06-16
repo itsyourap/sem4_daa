@@ -22,14 +22,14 @@ int pop()
   return stack[top--];
 }
 
-void bfs(int graph[V][V], int src)
+void dfs(int graph[V][V], int src)
 {
   for (int i = 0; i < V; i++)
     visited[i] = 0;
   visited[src] = 1;
 
   push(src);
-  
+
   while (top > -1)
   {
     int u = pop();
@@ -55,5 +55,5 @@ int main()
       {0, 1, 1, 0, 0},
       {0, 0, 1, 0, 0}};
 
-  bfs(graph, 0);
+  dfs(graph, 0);
 }
