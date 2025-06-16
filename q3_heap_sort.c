@@ -26,20 +26,23 @@ void swap(int arr[], int i, int j)
   arr[j] = temp;
 }
 
-void adjustHeap(int arr[], int i, int n)
+void adjustHeap(int arr[], int parent, int heapSize)
 {
-  int key = arr[i];
-  int j = 2 * i + 1;
-  while (j < n)
+  int temp = arr[parent];
+  int child = 2 * parent + 1;
+  while (child < heapSize)
   {
-    if (j + 1 < n && arr[j] < arr[j + 1])
-      j++;
-    if (key >= arr[j])
+    // If right child exists and is greater than left child
+    if (child + 1 < heapSize && arr[child] < arr[child + 1])
+      child++;
+    // If parent is larger than or equal to the largest child, done
+    if (temp >= arr[child])
       break;
-    arr[(j - 1) / 2] = arr[j];
-    j = 2 * j + 1;
+    arr[parent] = arr[child];
+    parent = child;
+    child = 2 * parent + 1;
   }
-  arr[(j - 1) / 2] = key;
+  arr[parent] = temp;
 }
 
 void makeMaxHeap(int arr[], int n)
